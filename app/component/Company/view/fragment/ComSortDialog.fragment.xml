@@ -1,0 +1,19 @@
+<core:FragmentDefinition                                                       
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <ViewSettingsDialog
+        id="ComSortDialog"
+        title="협력 업체 정렬"
+        confirm="onhandleConfirm">
+        <sortItems>
+            <ViewSettingsItem text="업체 코드" key="comcode"/>
+            <ViewSettingsItem text="업체명" key="comname"/>
+            <ViewSettingsItem text="주소" key="comaddress"/>
+            <ViewSettingsItem text="담당자" key="comperson"/>
+            <ViewSettingsItem text="담당자 연락처" key="comcontact"/>
+            <ViewSettingsItem text="거래 품목" key="comgood"/>
+            <ViewSettingsItem text="업체 등록일" key="comdate"/>
+        </sortItems>
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

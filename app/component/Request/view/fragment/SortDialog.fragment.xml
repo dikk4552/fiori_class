@@ -1,0 +1,21 @@
+<core:FragmentDefinition                                                       
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <ViewSettingsDialog
+        id="SortDialog"
+        title="물품 요청 정렬"
+        confirm="handleConfirm">
+        <sortItems>
+            <ViewSettingsItem text="요청 번호" key="request_number"/>
+            <ViewSettingsItem text="요청 물품" key="request_product"/>
+            <ViewSettingsItem text="물품 개수" key="request_quantity"/>
+            <ViewSettingsItem text="요청자" key="requestor"/>
+            <ViewSettingsItem text="요청 일자" key="request_date"/>
+            <ViewSettingsItem text="처리 상태" key="request_state"/>
+        </sortItems>
+    </ViewSettingsDialog>
+
+
+
+</core:FragmentDefinition>

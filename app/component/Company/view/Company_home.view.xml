@@ -1,0 +1,20 @@
+<mvc:View
+	controllerName="project3.controller.Company_home"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+>
+<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+<Panel width="auto" class="sapUiResponsiveMargin">
+	<content>
+	
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="협력 업체 목록" press=".onCompany_list">
+			<TileContent>
+				<ImageContent src="sap-icon://survey"/>
+			</TileContent>
+		</GenericTile>
+
+	</content>
+</Panel>
+
+</ScrollContainer>
+</mvc:View>

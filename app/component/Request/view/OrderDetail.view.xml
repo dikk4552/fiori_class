@@ -1,0 +1,98 @@
+<mvc:View controllerName="project2.controller.OrderDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout">
+    
+    <f:DynamicPage id="page" headerExpanded="false" showFooter="true" toggleHeaderOnTitleClick="true" >
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <HBox >
+                    <Button icon="sap-icon://nav-back" press=".onNavToBack" type="Transparent"/>
+                    <Title text="물품 요청 상세"/></HBox>
+                </f:heading>
+                <f:navigationActions>
+                    <Button visible="{=!${layout>/layout}}"
+                            icon="sap-icon://full-screen"
+                            type="Transparent" press=".onfull"/>
+                    <Button visible="{layout>/layout}"
+                            icon="sap-icon://exit-full-screen"
+                            type="Transparent" press=".onexitfull"/>
+                </f:navigationActions>
+                <f:snappedContent>
+                    <form:SimpleForm layout="ResponsiveGridLayout">
+                        <form:content>
+                            <VBox>
+                                <Label text="요청 번호"></Label>
+                                <Text text="{RequestModel>/request_number}" id= "ReqNum"/>
+                                <layoutData><layout:GridData span="XL2 L2 M2 S2"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="요청 일자"></Label>
+                                <Text id= "ReqDate" text="{RequestModel>/request_date}"/>
+                                <layoutData><layout:GridData span="XL2 L2 M2 S2"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="요청 상태"></Label>
+                                <ObjectStatus
+                                text="{
+                                path: 'RequestModel>/request_state',
+                                formatter: '.formatter.statusText'}
+                                "
+                                icon="{=${RequestModel>/request_state}==='A'?'sap-icon://sys-enter-2':
+                                        ${RequestModel>/request_state}==='C'?'sap-icon://error':'sap-icon://alert'}"
+                                state="{=${RequestModel>/request_state}==='A'?'Success':
+                                        ${RequestModel>/request_state}==='C'?'Error':'None'}"
+                                />
+                                <layoutData><layout:GridData span="XL8 L8 M8 S8"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox height="2.5rem">
+                                <Label text="요청 물품"></Label>
+                                <Text id= "ReqGood" text="{RequestModel>/request_product}"/>
+                                <layoutData><layout:GridData span="XL6 L6 M6 S6"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox height="2.5rem">
+                                <Label text="물품 개수"></Label>
+                                <Text id= "ReqQty" text="{RequestModel>/request_quantity}"/>
+                                <layoutData><layout:GridData span="XL6 L6 M6 S6"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox >
+                                <Label text="요청자"></Label>
+                                <Text id= "Requester" text="{RequestModel>/requestor}"/>
+                                <layoutData><layout:GridData span="XL6 L6 M6 S6"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="예상 가격"></Label>
+                                <Text id= "ReqPrice" text="{RequestModel>/requst_estimated_price}"/>
+                                <layoutData><layout:GridData span="XL6 L6 M6 S6"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="요청 사유"></Label>
+                                <Text id= "ReqReason" text="{RequestModel>/request_reason}"/>
+                                <layoutData><layout:GridData span="XL12 L12 M12 S12"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="반려 사유"></Label>
+                                <Text id= "ReqRejectReason" text="{RequestModel>/request_reject_reason}"/>
+                                <layoutData><layout:GridData span="XL12 L12 M12 S12"></layout:GridData></layoutData>
+                            </VBox>
+                            
+                        </form:content>
+                    </form:SimpleForm>
+                </f:snappedContent>
+
+            </f:DynamicPageTitle>
+        </f:title>
+        
+        <f:footer>
+            <OverflowToolbar visible="{=${RequestModel>/request_state}==='B'?true:false}">
+                <ToolbarSpacer/>
+                <Button type="Emphasized" text="승인" press=".onApproval"/>
+                <Button type="Transparent" text="반려" press=".onReject"/>
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+
+</mvc:View>

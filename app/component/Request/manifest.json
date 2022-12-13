@@ -1,0 +1,209 @@
+{
+  "_version": "1.42.0",
+  "sap.app": {
+    "id": "project2",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.8.1",
+      "toolsId": "753db596-c6f8-4000-9f76-e5e292018c9a"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/request/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.102.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "project2.i18n.i18n"
+        }
+      },
+      "Request": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "earlyRequests": true,
+          "synchronizationMode": "None",
+          "autoExpandSelect": true
+        }
+      },
+      "Request2":{
+        "type" : "sap.ui.model.json.JSONModel",
+        "uri" : "model/RequestOrder.json"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "project2.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "Request_home",
+          "pattern": "",
+          "target": [
+            "Request_home"
+          ],
+          "layout":"OneColumn"
+        },
+        {
+          "name": "Request",
+          "pattern": "Request",
+          "target": [
+            "Request"
+          ],
+          "layout":"OneColumn"
+        },
+        {
+          "name": "Request_chart",
+          "pattern": "Request_chart",
+          "target": [
+            "Request_chart"
+          ],
+          "layout":"OneColumn"
+        },
+        {
+          "name": "CreateOrder",
+          "pattern" : "CreateOrder/{num}",
+          "target":[
+            "CreateOrder"
+          ],
+          "layout":"OneColumn"
+        },
+        {
+          "name": "OrderDetail",
+          "pattern" : "OrderDetail/{ReqNum}",
+          "target":[
+            "Request",
+            "OrderDetail"
+          ],
+          "layout":"TwoColumnsMidExpanded"
+        },
+        {
+          "name": "OrderDetailExpanded",
+          "pattern" : "OrderDetail/{ReqNum}/expand",
+          "target":[
+            "OrderDetail"
+          ],
+          "layout":"MidColumnFullScreen"
+        },
+        {
+          "name": "Request_state",
+          "pattern": "Request/{state}",
+          "target": [
+            "Request"
+          ],
+          "layout":"OneColumn"
+        }
+      ],
+      "targets": {
+        "Request_home":{
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Request_home",
+          "viewName": "Request_home",
+          "controlAggregation": "beginColumnPages"
+        },
+        "Request": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "Request",
+          "viewName": "Request",
+          "controlAggregation": "beginColumnPages"
+        },
+        "Request_chart": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "Request_chart",
+          "viewName": "Request_chart",
+          "controlAggregation": "beginColumnPages"
+        },
+        "CreateOrder":{
+          "viewType" : "XML",
+          "transition" : "slide",
+          "viewId": "CreateOrder",
+          "viewName": "CreateOrder",
+          "controlAggregation": "beginColumnPages"
+        },
+        "OrderDetail":{
+          "viewType" : "XML",
+          "transition" : "slide",
+          "viewId": "OrderDetail",
+          "viewName": "OrderDetail",
+          "controlAggregation": "midColumnPages"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "project2.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    }
+  }
+}

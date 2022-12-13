@@ -1,0 +1,142 @@
+<mvc:View controllerName="project4.controller.PrListMTable"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:t="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core" height="100%">
+
+<f:DynamicPage id="PrListMPage">
+    <f:title>
+        <f:DynamicPageTitle>
+            <f:heading><HBox><Title text="부품 목록(반응형 테이블)"/></HBox></f:heading>
+        </f:DynamicPageTitle>
+    </f:title>
+    <f:header>
+        <f:DynamicPageHeader pinnable="true">
+            <form:SimpleForm layout="ResponsiveGridLayout">
+                <form:content>
+                    <VBox>
+                        <Label text="부품 카테고리 : "/>
+                        <Input id = "category"/>
+                        <layoutData>
+                            <l:GridData span="XL2 L2 M6 S12"></l:GridData>
+                        </layoutData>
+                    </VBox>
+                    <VBox>
+                        <Label text="부품 코드 : "/>
+                        <Input id = "code" type="Text" showValueHelp="true" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequest"/>
+                        <layoutData>
+                            <l:GridData span="XL2 L2 M6 S12"></l:GridData>
+                        </layoutData>
+                    </VBox>
+                    <VBox>
+                        <Label text="부품명 : "/>
+                        <Input id = "name" type="Text" showValueHelp="true" valueHelpOnly="true" valueHelpRequest=".onValueHelpRequest"/>
+                        <layoutData>
+                            <l:GridData span="XL2 L2 M6 S12"></l:GridData>
+                        </layoutData>
+                    </VBox>
+                    <VBox>
+                        <Label text="등록 일자 : "/>
+                        <DatePicker id="date" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd"/>
+                        <layoutData>
+                            <l:GridData span="XL2 L2 M6 S12"></l:GridData>
+                        </layoutData>
+                    </VBox>
+                    <VBox>
+                        <Label text="부품 생산 여부 : "/>
+                            <Select id="produce" width="100%"
+                                    items="{
+                                        path: 'ProduceSelection>/ProduceSelection'
+                                    }">
+                                <core:Item key="{ProduceSelection>State}" text="{ProduceSelection>PS}"></core:Item>
+                            </Select>
+                        <layoutData>
+                            <l:GridData span="XL2 L2 M6 S12"/>
+                        </layoutData>
+                    </VBox>
+                    <HBox justifyContent="End">
+                        <Button type="Emphasized" text="검색" press="onSearch"/>
+                        <Button type="Transparent" text="초기화" press="onReset"/>
+                        <layoutData>
+                        <l:GridData span="XL12 L12 M12 S12"></l:GridData>
+                        </layoutData>
+                    </HBox>
+                </form:content>
+            </form:SimpleForm>
+        </f:DynamicPageHeader>
+    </f:header>
+    <f:content class="sapUiSmallMargin">
+        <Table id="ProductMTable" inset="false"
+                items="{
+                    path: 'ProductList>/ProductList'
+                    }">
+            <headerToolbar>
+                <OverflowToolbar>
+                    <content>
+                        <Title text="부품 목록"/>
+                        <ToolbarSpacer/>
+                        <Button type="Transparent" text="그리드 테이블" press="onUiTable"/>
+                        <Button type="Transparent" icon="sap-icon://sort" press="onSort"/>
+                    </content>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column mergeDuplicates="true" minScreenWidth="Tablet" demandPopin="true">
+                    <Text text="부품 카테고리"/>
+                </Column>
+                <Column>
+                    <Text text="부품 코드"/>
+                </Column>
+                <Column>
+                    <Text text="부품명"/>
+                </Column>
+                <Column minScreenWidth="Desktop" demandPopin="true">
+                    <Text text="단위"/>
+                </Column>
+                <Column minScreenWidth="Tablet" demandPopin="true">
+                    <Text text="부품 단가"/>
+                </Column>
+                <Column>
+                    <Text text="부품 생산 여부"/>
+                </Column>
+                <Column minScreenWidth="Desktop" demandPopin="true">
+                    <Text text="등록일자"/>
+                </Column>
+                <Column minScreenWidth="Desktop" demandPopin="true">
+                    <Text text="비고"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem vAlign="Middle">
+                    <cells>
+                        <Text text="{ProductList>category}"/>
+                        <Text text="{ProductList>code}"/>
+                        <Text text="{ProductList>name}"/>
+                        <Text text="{ProductList>unit}"/>
+                        <Text text="{ProductList>cost}"/>
+                        <ObjectStatus 
+                            text="{
+                                path: 'ProductList>produce',
+                                formatter: '.ProductFormatter.statusText'
+                            }"
+                            state="{=${ProductList>produce}==='A'?'Success':
+                                                ${ProductList>produce}==='C'?'Warning':
+                                                ${ProductList>produce}==='D'?'Error':'None'}"
+                        />
+                        <Text text="{ProductList>date}"/>
+                        <Text text="{ProductList>etc}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </f:content>
+
+
+</f:DynamicPage>
+
+
+
+</mvc:View>

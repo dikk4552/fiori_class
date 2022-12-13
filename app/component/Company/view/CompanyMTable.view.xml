@@ -1,0 +1,141 @@
+<mvc:View controllerName="project3.controller.CompanyMTable"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:t="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core" height="100%">
+    
+    <f:DynamicPage id="CompanyMTablePage">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading><HBox><Title text="협력 업체 목록"/></HBox></f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <form:SimpleForm layout="ResponsiveGridLayout">
+                    <form:content>
+                        <VBox>
+                            <Label text="업체 코드 : "/>
+                            <Input id="ComNum"/>
+                            <layoutData>
+                                <l:GridData span="XL2 L2 M6 S12"/>
+                            </layoutData>
+                        </VBox>
+                        <VBox>
+                            <Label text="업체명 : "/>
+                            <Input id="ComName"/>
+                            <layoutData>
+                                <l:GridData span="XL2 L2 M6 S12"/>
+                            </layoutData>
+                        </VBox>
+                        <VBox>
+                            <Label text="담당자 : "/>
+                            <Input id="ComPerson"/>
+                            <layoutData>
+                                <l:GridData span="XL2 L2 M6 S12"/>
+                            </layoutData>
+                        </VBox>
+                        <VBox>
+                            <Label text="업체 등록일 : "/>
+                            <DatePicker id="Date" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd"/>
+                            <layoutData>
+                                <l:GridData span="XL2 L2 M6 S12"/>
+                            </layoutData>
+                        </VBox>
+                        <VBox>
+                            <Label text="신용 상태 : "/>
+                            <Select id="Status" width="100%"
+                                    items="{
+                                        path: 'Company>/Company_state'
+                                    }">
+                                <core:Item key="{Company>state_key}"
+                                text="{Company>state_name}"/>
+                            </Select>
+                            <layoutData>
+                                <l:GridData span="XL2 L2 M6 S12"/>
+                            </layoutData>
+                        </VBox>
+                        <HBox justifyContent="End">
+                            <Button type="Emphasized" text="검색" press="onSearch"/>
+                            <Button type="Transparent" text="초기화" press="onReset"/>
+                            <layoutData>
+                                <l:GridData span="XL12 L12 M12 S12"/>
+                            </layoutData>
+                        </HBox>
+                    </form:content>
+                </form:SimpleForm>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content class="sapUiSmallMargin">
+            <Table id="CompanyMTable" inset="false"
+                    items="{CompanyModel>/}">
+                <headerToolbar>
+                    <OverflowToolbar >
+                        <content>
+                            <Title id="CTableName" text=""/>
+                            <ToolbarSpacer/>
+                            <Button type="Transparent" text="그리드 테이블" press="onUiTable"/>
+                            <Button type="Transparent" icon="sap-icon://sort" press="onSort"/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="업체 코드"/>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="업체명"/>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="주소"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="담당자"/>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="담당자 연락처"/>
+                    </Column>
+                    <Column>
+                        <Text text="거래 품목"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="업체 등록일"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="신용 상태"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle" type="Navigation" press="onNavToDetail">
+                        <cells>
+                            <Text text="{CompanyModel>comcode}"/>
+                            <Text text="{CompanyModel>comname}"/>
+                            <Text text="{CompanyModel>comaddress}"/>
+                            <Text text="{CompanyModel>comperson}"/>
+                            <Text text="{CompanyModel>comcontact}"/>
+                            <Text text="{CompanyModel>comgood}"/>
+                            <Text text="{CompanyModel>comdate}"/>
+                            <ObjectStatus 
+                                text="{
+                                    path: 'CompanyModel>comstate',
+                                    formatter: '.comFormatter.statusText'
+                                }"
+                                icon="{=${CompanyModel>comstate}==='trust'?'sap-icon://sys-enter-2':
+                                        ${CompanyModel>comstate}==='caution'?'sap-icon://error':'sap-icon://alert'}"
+                                state="{=${CompanyModel>comstate}==='trust'?'Success':
+                                        ${CompanyModel>comstate}==='caution'?'Error':'None'}"/>
+
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            
+            </Table>
+            
+                    
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

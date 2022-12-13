@@ -1,0 +1,74 @@
+<mvc:View controllerName="project3.controller.CreateCompany"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+
+    <f:DynamicPage id="ComCreatePage" headerExpanded="false" showFooter="true" toggleHeaderOnTitleClick="true">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading><HBox ><Title text="협력 업체 추가"/></HBox></f:heading>
+                <f:snappedContent>
+                    <form:SimpleForm layout="ResponsiveGridLayout">
+                        <form:content>
+                            <VBox>
+                                <Label text="업체코드"/>
+                                <Text id="ComNum" text=""/>
+                                <layoutData><layout:GridData span="XL6 L6 M3 S12"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="업체 등록일"/>
+                                <Text id="Date" text=""/>
+                                <layoutData><layout:GridData span="XL6 L6 M3 S12"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="업체명"/>
+                                <Input id="ComName"/>
+                                <layoutData><layout:GridData span="XL6 L6 M3 S12"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="주소"/>
+                                <Input id="ComAddress"/>
+                                <layoutData><layout:GridData span="XL6 L6 M12 S12"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="담당자"/>
+                                <Input id="ComPerson"/>
+                                <layoutData><layout:GridData span="XL6 L6 M3 S12"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="담당자 연락처"/>
+                                <Input id="ComContact"/>
+                                <layoutData><layout:GridData span="XL6 L6 M3 S12"></layout:GridData></layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="거래 품목"/>
+                                <Input id="Good"/>
+                                <layoutData><layout:GridData span="XL6 L6 M3 S12"></layout:GridData></layoutData>
+                            </VBox>
+                            
+                            <!-- <VBox>
+                                <Label text="신용상태"/>
+                                <Select width="100%" id="Status">
+                                    <core:Item text="신뢰" selected="true" key="trust"></core:Item>
+                                    <core:Item text="보류" key="hold"></core:Item>
+                                    <core:Item text="주의" key="caution"></core:Item>
+                                </Select>
+                                <layoutData><layout:GridData span="XL6 L6 M3 S12"></layout:GridData></layoutData>
+                            </VBox> -->
+                        </form:content>
+                    </form:SimpleForm>
+                </f:snappedContent>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:footer>
+            <OverflowToolbar >
+                <ToolbarSpacer/>
+                <Button type="Emphasized" text="생성" press=".onCreate"/>
+                <Button type="Transparent" text="취소" press=".onBack"/>
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

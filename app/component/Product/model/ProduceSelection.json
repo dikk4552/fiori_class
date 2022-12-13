@@ -1,0 +1,24 @@
+{
+    "ProduceSelection":[
+        {
+            "State":"",
+            "PS":"전체"
+        },
+        {
+            "State":"A",
+            "PS":"생산"
+        },
+        {
+            "State":"B",
+            "PS":"미사용"
+        },
+        {
+            "State":"C",
+            "PS":"단종 예정"
+        }
+        ,{
+            "State":"D",
+            "PS":"단종"
+        }
+    ]
+}

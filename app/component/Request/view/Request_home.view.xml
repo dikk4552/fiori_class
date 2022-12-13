@@ -1,0 +1,129 @@
+<mvc:View
+	controllerName="project2.controller.Request_home"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+>
+<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+<Panel width="auto" class="sapUiResponsiveMargin">
+	<content>
+		<HBox width="100%" height="3rem">
+			<Title text="물품 요청 관리"/>
+		</HBox>
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="물품 요청 목록" press=".onRequest_list">
+			<TileContent>
+				<ImageContent src="sap-icon://survey"/>
+			</TileContent>
+		</GenericTile>
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" header="물품 요청 현황" press=".onRequest_chart">
+			<TileContent>
+				<ImageContent src="sap-icon://bar-chart"/>
+			</TileContent>
+		</GenericTile>
+		<!-- <SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop">
+			<GenericTile
+				backgroundImage="../component/Request/view/KakaoTalk_20221208_114645795.jpg"
+				frameType="TwoByOne" press="pressOnTileOne">
+			</GenericTile>
+			<GenericTile
+				backgroundImage="../component/Request/view/bori.jpg"
+				frameType="TwoByOne" press="pressOnTileOne">
+			</GenericTile>
+			<GenericTile
+				backgroundImage="../component/Request/view/IMG_451811111.jpg"
+				frameType="TwoByOne" press="pressOnTileOne">
+			</GenericTile>
+		</SlideTile> -->
+		
+		
+		<HBox width="100%" height="3rem"/>
+		<HBox width="100%" height="3rem">
+			<Title text="물품 요청 Overview"/>
+		</HBox>
+	
+		<f:Card class="sapUiMediumMargin" width="300px">
+			<f:header>
+				<card:Header title="물품 요청 대기 목록" subtitle="최신 3개의 처리 대기 테이터 존재"/>
+			</f:header>
+			<f:content>
+			<List showSeparators="None" items="{path:'RqholdModel>/'}" >
+				<CustomListItem type="Active" press=".onNavToDetail">
+					<HBox alignItems="Center" justifyContent="SpaceBetween">
+					<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+						<Title level="H3" text="{RqholdModel>request_product}"/>
+						<Text text="{RqholdModel>requestor}"/>
+					</VBox>
+					<ObjectStatus
+						class="sapUiTinyMarginBegin sapUiSmallMarginEnd"
+						text="{
+							path:'RqholdModel>request_state',
+							formatter: '.formatter.statusText'
+						}"
+						icon="{=${RqstatesumModel>request_state}==='A'?'sap-icon://sys-enter-2':
+                               ${RqstatesumModel>request_state}==='C'?'sap-icon://error':'sap-icon://alert'}"
+                        state="{=${RqstatesumModel>request_state}==='A'?'Success':
+                                ${RqstatesumModel>request_state}==='C'?'Error':'None'}"/>
+					</HBox>
+				</CustomListItem>
+			</List>
+			</f:content>
+		</f:Card>
+		
+		<f:Card class="sapUiMediumMargin" width="200px">
+			<f:header>
+				<card:Header title="요청 상태별 집계"></card:Header>
+			</f:header>
+			<f:content>
+				<List showSeparators="None" items="{path:'RqstatesumModel>/'}" >
+				<CustomListItem type="Active" press=".onState">
+					<HBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginTopBottom " alignItems="Center" justifyContent="SpaceBetween">
+					<ObjectStatus
+						class="sapUiTinyMarginBegin sapUiSmallMarginEnd"
+						text="{
+							path:'RqstatesumModel>request_state',
+							formatter: '.formatter.statusText'
+						}"
+						icon="{=${RqstatesumModel>request_state}==='A'?'sap-icon://sys-enter-2':
+                               ${RqstatesumModel>request_state}==='C'?'sap-icon://error':'sap-icon://alert'}"
+                        state="{=${RqstatesumModel>request_state}==='A'?'Success':
+                                ${RqstatesumModel>request_state}==='C'?'Error':'None'}"/>
+				
+					<Text text="{RqstatesumModel>total}"/>
+					</HBox>
+				</CustomListItem>
+			</List>
+			</f:content>
+		</f:Card>
+
+		<f:Card class="sapUiMediumMargin" width="300px">
+			<f:header>
+				<card:Header title="Picture" subtitle="깜찍쓰"/>
+			</f:header>
+			<f:content>
+			<List showSeparators="None" >
+				<CustomListItem>
+					<VBox>
+						<Image
+							src="../component/Request/view/KakaoTalk_20221208_114645795.jpg"
+							width="300px"/>
+					</VBox>
+					<VBox>
+						<Image
+							src="../component/Request/view/bori.jpg"
+							width="300px"/>
+					</VBox>
+					<VBox>
+						<Image
+							src="../component/Request/view/IMG_451811111.jpg"
+							width="300px"/>
+					</VBox>
+				</CustomListItem>
+			</List>
+			</f:content>
+		</f:Card>
+	</content>
+</Panel>
+
+</ScrollContainer>
+</mvc:View>

@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns:cards="sap.f.cards"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table">
+
+    <Dialog
+        id="RejectReasonDialog"
+        title="반려 사유 입력">
+        <content>
+            <form:SimpleForm layout="ResponsiveGridLayout">
+            <VBox>
+                <Label text="반려 사유: "/>
+                <TextArea id="rejectreason"
+                    cols="40"
+                    growing="false"
+                    rows="10"
+                    showExceededText="false"
+                    valueLiveUpdate="false"
+                    wrapping="None"
+                />
+            </VBox>
+            </form:SimpleForm>
+        </content>
+        <beginButton>
+            <Button text="확인" press="onSubmit"/>
+        </beginButton>
+        <endButton>
+            <Button text="취소" press="onCloseDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

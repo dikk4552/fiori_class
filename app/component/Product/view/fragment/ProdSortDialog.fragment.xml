@@ -1,0 +1,18 @@
+<core:FragmentDefinition                                                       
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <ViewSettingsDialog
+        id="ProdSortDialog"
+        title="부품 목록 정렬"
+        confirm="onhandleConfirm">
+        <sortItems>
+            <ViewSettingsItem text="부품 카테고리" key="category"/>
+            <ViewSettingsItem text="부품 코드" key="code"/>
+            <ViewSettingsItem text="부품명" key="name"/>
+            <ViewSettingsItem text="부품 단가" key="cost"/>
+            <ViewSettingsItem text="부품 생산 여부" key="produce"/>
+            <ViewSettingsItem text="등록 일자" key="date"/>
+        </sortItems>
+    </ViewSettingsDialog>
+</core:FragmentDefinition>
